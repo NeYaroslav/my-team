@@ -6,6 +6,52 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Users {
+  id                 Int                  @id @default(autoincrement())
+  username           String               @unique
+  name               String?
+  password           String               @db.VarChar(300)
+  createdAt          DateTime             @default(now())
+  refreshToken       String?              @unique @db.VarChar(300)
+  teams              Teams[]
+  userTeamReferences userTeamReferences[]
+  Notes              Notes[]
+}
+
+model Teams {
+  id         Int                  @id @default(autoincrement())
+  title      String
+  leader     Users                @relation(fields: [leaderId], references: [id])
+  leaderId   Int
+  References userTeamReferences[]
+  Notes      Notes[]
+}
+
+model userTeamReferences {
+  id         Int     @id @default(autoincrement())
+  team       Teams   @relation(fields: [teamsId], references: [id])
+  teamsId    Int
+  isAccepted Boolean @default(false)
+  user       Users   @relation(fields: [usersId], references: [id])
+  usersId    Int
+}
+
+model Notes {
+  id            Int    @id @default(autoincrement())
+  title         String @db.VarChar(300)
+  teamId        Int
+  responsibleId Int
+  team          Teams  @relation(fields: [teamId], references: [id])
+  responsible   Users  @relation(fields: [responsibleId], references: [id])
+  stage         Stages @default(intended)
+}
+
+enum Stages {
+  intended
+  inProgress
+  fulfilled
 }
