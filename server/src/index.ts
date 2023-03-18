@@ -3,6 +3,7 @@ import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import { authRouter, teamsRouter } from './routes'
+import verifyAccess from './middleware/verifyAccess'
 
 dotenv.config()
 
@@ -15,7 +16,10 @@ app.use(cors({ origin: '*' }))
 // auth
 app.use('/auth', authRouter)
 // protectedRoutes
-app.use('/teams', teamsRouter)
+app.use(verifyAccess)
+
+app.get('/team', (req, res) => res.sendStatus(200))
+// app.use('/teams', teamsRouter)
 
 app.listen(process.env.PORT, () => {
   console.log(process.env.PORT)
