@@ -1,7 +1,5 @@
 import express from 'express'
-import login from '../controllers/login'
-import refresh from '../controllers/refresh'
-import register from '../controllers/register'
+import { login, refresh, register } from '../controllers/index'
 import verifyCredential from '../middleware/verifyCredential'
 
 const authRouter = express.Router()
