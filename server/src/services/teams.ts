@@ -17,12 +17,15 @@ const createTeam = async (title: string, leaderId: number) => {
   })
 }
 
-const getTeamById = async (id: number) => {
-  return database.teams.findFirstOrThrow({
+const getTeamsByLeaderId = async (leaderId: number) => {
+  return database.teams.findMany({
     where: {
-      id,
+      leaderId: leaderId
     },
+    select: {
+      id: true
+    }
   })
 }
 
-export { getLeadershipTeams, createTeam, getTeamById }
+export { getLeadershipTeams, createTeam, getTeamsByLeaderId }

@@ -4,7 +4,7 @@ import { getNotesByTeamId } from '../services/notes'
 const getNotes = async (req: RequestWithAuthId, res: ResponseWithError) => {
   const { id } = req.params
 
-  if ((typeof id === 'string') === false)
+  if (isNaN(parseInt(id)))
     return res.status(400).json({ message: 'team id required' })
 
   try {

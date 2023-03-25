@@ -11,13 +11,23 @@ type ResponseWithError = Response<
   }
 >
 
-type RequestWithAuthId = Request<
-  { [key: string]: unknown },
+type AuthIdReq = {
+  authId: number
+  [key: string]: unknown
+}
+
+type RequestWithAuthTeams = Request<
+  { [key: string]: string },
   any,
-  {
-    authId: number
-    [key: string]: unknown
+  AuthIdReq & {
+    authTeams: number[]
   }
 >
 
-export type { ResponseWithError, Request, NextFunction, RequestWithAuthId }
+type RequestWithAuthId = Request<
+  { [key: string]: string },
+  any,
+  AuthIdReq
+>
+
+export type { ResponseWithError, Request, NextFunction, RequestWithAuthId, RequestWithAuthTeams }
