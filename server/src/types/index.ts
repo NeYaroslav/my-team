@@ -12,7 +12,7 @@ type ResponseWithError = Response<
 >
 
 type RequestWithAuthId = Request<
-  {},
+  { [key: string]: unknown },
   any,
   {
     authId: number
