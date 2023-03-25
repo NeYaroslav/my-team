@@ -24,10 +24,12 @@ type RequestWithAuthTeams = Request<
   }
 >
 
-type RequestWithAuthId = Request<
-  { [key: string]: string },
-  any,
-  AuthIdReq
->
+type RequestWithAuthId = Request<{ [key: string]: string }, any, AuthIdReq>
 
-export type { ResponseWithError, Request, NextFunction, RequestWithAuthId, RequestWithAuthTeams }
+export type {
+  ResponseWithError,
+  Request,
+  NextFunction,
+  RequestWithAuthId,
+  RequestWithAuthTeams,
+}

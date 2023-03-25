@@ -20,11 +20,11 @@ const createTeam = async (title: string, leaderId: number) => {
 const getTeamsByLeaderId = async (leaderId: number) => {
   return database.teams.findMany({
     where: {
-      leaderId: leaderId
+      leaderId: leaderId,
     },
     select: {
-      id: true
-    }
+      id: true,
+    },
   })
 }
 
