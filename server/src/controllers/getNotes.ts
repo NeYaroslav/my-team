@@ -8,7 +8,7 @@ const getNotes = async (req: RequestWithAuthId, res: ResponseWithError) => {
     return res.status(400).json({ message: 'team id required' })
 
   try {
-    const notes = await getNotesByTeamId(id)
+    const notes = await getNotesByTeamId(+id)
     res.status(200).json(notes)
   } catch (error) {
     return res.status(400).json({ message: 'something went wrong', error })

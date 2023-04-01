@@ -1,0 +1,15 @@
+.log-in-form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 10px;
+  padding: var(--space-2);
+  border-radius: var(--radius-1);
+  box-shadow: var(--shadow-1);
+  max-width: 350px;
+  width: 100%;
+}
+.log-in-form__button {
+  align-self: center;
+}

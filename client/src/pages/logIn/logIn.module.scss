@@ -1,0 +1,16 @@
+.log-in {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.log-in__message {
+  margin-top: var(--space-4);
+}
+.log-in__title {
+  margin-bottom: var(--space-4);
+  font-size: var(--font-sz-3);
+  text-align: center;
+  font-weight: 500;
+}

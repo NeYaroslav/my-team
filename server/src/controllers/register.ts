@@ -12,7 +12,7 @@ const register = async (req: Request, res: ResponseWithError) => {
   } catch (error) {
     return res
       .status(400)
-      .json({ message: 'Could not register the user with this username' })
+      .json({ message: 'Could not register the user with this username', error })
   }
 }
 

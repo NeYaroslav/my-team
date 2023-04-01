@@ -1,0 +1,7 @@
+.main-error {
+  color: var(--bg-color-3-primary);
+  & > svg {
+    vertical-align: text-top;
+    margin-right: var(--space-1);
+  }
+}

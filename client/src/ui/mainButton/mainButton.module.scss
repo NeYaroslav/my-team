@@ -1,0 +1,69 @@
+.main-button {
+  border: 0;
+  outline: transparent;
+  font: inherit;
+  padding: var(--space-2) var(--space-4);
+  font-weight: 500;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  border-radius: var(--radius-1);
+  cursor: pointer;
+  letter-spacing: calc(var(--space-1) / 3);
+  transition: color 0.2s ease;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: var(--radius-1);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+  }
+  &:not(:disabled):active:after {
+    transform: scale(0.9);
+  }
+  &:disabled {
+    color: var(--txt-color-1-primary);
+    cursor: auto;
+    &::after {
+      background: var(--bg-color-2-secondary);
+    }
+  }
+}
+
+.main-button_invert {
+  color: var(--txt-color-2-primary);
+
+  &::after {
+    background: var(--bg-color-5-primary);
+  }
+
+  &:not(:disabled):hover,
+  &:not(:disabled):focus-visible {
+    color: var(--txt-color-1-primary);
+    &::after {
+      background: var(--bg-color-4-primary);
+    }
+  }
+}
+
+.main-button_regular {
+  color: var(--txt-color-1-primary);
+
+  &::after {
+    background: var(--bg-color-4-primary);
+  }
+
+  &:not(:disabled):hover,
+  &:not(:disabled):focus-visible {
+    color: var(--txt-color-2-primary);
+    &::after {
+      background: var(--bg-color-5-primary);
+    }
+  }
+}

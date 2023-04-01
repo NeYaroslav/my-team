@@ -14,7 +14,7 @@ const createNote = async (
   })
 }
 
-const getNotesByTeamId = async (teamId) => {
+const getNotesByTeamId = async (teamId: number) => {
   return database.notes.findMany({
     where: {
       teamId,

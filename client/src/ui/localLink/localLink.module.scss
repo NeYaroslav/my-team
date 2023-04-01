@@ -1,0 +1,9 @@
+.local-link {
+  color: var(--txt-color-3-primary);
+  transition: color 0.2s ease;
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--txt-color-3-secondary);
+  }
+}
