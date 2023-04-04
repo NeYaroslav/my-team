@@ -38,9 +38,10 @@ const baseQueryWithRefresh: BaseQueryFn<
     if (refreshResponse.data !== null) {
       api.dispatch(setToken(refreshResponse.data as string))
       result = await baseQuery(args, api, extraOptions)
+    } else {
+      console.log('log out')
+      api.dispatch(clearToken())
     }
-  } else {
-    api.dispatch(clearToken())
   }
   if (result.error) console.log(result.error)
   const error = result.error?.data

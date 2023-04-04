@@ -1,5 +1,8 @@
 import rootApi from './rootApi'
-import type { ILogInCredentials, ISignUpCredentails } from '../../types/apiRequests'
+import type {
+  ILogInCredentials,
+  ISignUpCredentails,
+} from '../../types/apiRequests'
 import type { IToken } from '../../types/apiResponces'
 
 const authApi = rootApi.injectEndpoints({
@@ -17,8 +20,11 @@ const authApi = rootApi.injectEndpoints({
         method: 'POST',
         body: logInCredential,
       }),
-    })
+    }),
+    refresh: buidler.query<IToken, void>({
+      query: () => 'auth/refresh',
+    }),
   }),
 })
 
-export const { useSignUpMutation, useLogInMutation } = authApi
+export const { useSignUpMutation, useLogInMutation, useRefreshQuery } = authApi

@@ -1,6 +1,5 @@
-import React from 'react'
-import { MainButton, MainError, MainInput } from '../../../ui'
 import { BsKeyFill, BsPersonBadge, BsPersonFill } from 'react-icons/bs'
+import { MainButton, MainError, MainInput } from '../../../ui'
 import withSignUpForm, { WithProps } from './withSignUpForm'
 import classes from './signUpForm.module.scss'
 
@@ -58,9 +57,14 @@ const SignUpForm: React.FC<Props> = ({
         withError={Boolean(errors.confirmedPassword)}
         {...register('confirmedPassword')}
       />
-      {errors.confirmedPassword && <MainError>{errors.confirmedPassword.message}</MainError>}
+      {errors.confirmedPassword && (
+        <MainError>{errors.confirmedPassword.message}</MainError>
+      )}
       {errors.root && <MainError>{errors.root.message}</MainError>}
-      <MainButton disabled={isLoading} className={classes['sign-up-form__button']}>
+      <MainButton
+        disabled={isLoading}
+        className={classes['sign-up-form__button']}
+      >
         {isLoading ? 'Loading...' : 'Sign up'}
       </MainButton>
     </form>

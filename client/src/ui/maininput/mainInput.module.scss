@@ -46,7 +46,7 @@
     pointer-events: none;
   }
   &.main-input_error {
-    animation: showError .3s linear 1 alternate;
+    animation: showError 0.3s linear 1 alternate;
     label {
       border: 1px solid var(--bg-color-3-primary);
     }

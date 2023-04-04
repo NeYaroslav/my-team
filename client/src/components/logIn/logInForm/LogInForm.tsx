@@ -1,10 +1,9 @@
-import React from 'react'
-import { MainButton, MainError, MainInput } from '../../../ui'
 import { BsKeyFill, BsPersonFill } from 'react-icons/bs'
+import { MainButton, MainError, MainInput } from '../../../ui'
 import withLogInForm, { WithProps } from './withLogInForm'
 import classes from './logInForm.module.scss'
 
-type Props = WithProps & {
+interface Props extends WithProps {
   className?: string
 }
 
@@ -27,7 +26,7 @@ const LogInForm: React.FC<Props> = ({
         autoComplete="username"
         withError={Boolean(errors.username)}
         {...register('username')}
-        />
+      />
       {errors.username && <MainError>{errors.username.message}</MainError>}
       <MainInput
         id="password"
@@ -40,8 +39,12 @@ const LogInForm: React.FC<Props> = ({
       />
       {errors.password && <MainError>{errors.password.message}</MainError>}
       {errors.root && <MainError>{errors.root.message}</MainError>}
-      <MainButton disabled={isLoading} className={classes['log-in-form__button']}>
-        {isLoading? 'Loading...': 'Log in'}
+      <MainButton
+        disabled={isLoading}
+        className={classes['log-in-form__button']}
+        withSpinner={isLoading}
+      >
+        {isLoading ? '' : 'Log in'}
       </MainButton>
     </form>
   )
