@@ -39,9 +39,9 @@ const withLogInForm = <T extends WithProps>(WrappedComponent: React.FC<T>) => {
 
     const onSubmit = handleSubmit(async (values) => {
       const data = await logIn(values).unwrap()
-      dispatch(setToken(data.token))
+      dispatch(setToken(data))
       navigate('/home', {
-        replace: true
+        replace: true,
       })
     })
 

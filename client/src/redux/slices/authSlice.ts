@@ -1,21 +1,34 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { IAuthResponse, ValueOrNull } from '../../types'
+import { RootState } from '../store'
 
-type initState = null | string
+const initialState: ValueOrNull<IAuthResponse> = {
+  token: null,
+  username: null,
+}
 
 const authSlice = createSlice({
-  initialState: null as initState,
+  initialState,
   name: 'auth',
   reducers: {
-    setToken: (state, { payload }: PayloadAction<string>) => {
-      state = payload
+    setToken: (
+      state,
+      { payload: { token, username } }: PayloadAction<IAuthResponse>
+    ) => {
+      state.token = token
+      state.username = username
       return state
     },
     clearToken: (state) => {
-      state = null
+      state.token = null
+      state.username = null
       return state
     },
   },
 })
+
+export const tokenSelector = (data: RootState) => data.auth.token
+export const usernameSelector = (data: RootState) => data.auth.username
 
 export const { clearToken, setToken } = authSlice.actions
 export default authSlice.reducer

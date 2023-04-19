@@ -1,8 +1,8 @@
-import React from 'react'
+import { memo } from 'react'
 import { Link, LinkProps } from 'react-router-dom'
 import classes from './localLink.module.scss'
 
-type Props = LinkProps & React.RefAttributes<HTMLAnchorElement>
+interface Props extends LinkProps, React.RefAttributes<HTMLAnchorElement> {}
 
 const LocalLink: React.FC<Props> = ({ className, ...rest }) => {
   const fullClassName = `${classes['local-link']} ${className ?? ''}`
@@ -10,4 +10,4 @@ const LocalLink: React.FC<Props> = ({ className, ...rest }) => {
   return <Link className={fullClassName} {...rest} />
 }
 
-export default LocalLink
+export default memo(LocalLink)

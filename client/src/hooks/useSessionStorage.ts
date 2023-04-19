@@ -1,22 +1,16 @@
 import { useEffect, useState } from 'react'
 
 const useSessionStorage = <T>(key: string, initialState: T) => {
-  const [value, setValue] = useState<T>(null as T)
+  const [value, setValue] = useState<T>(() => {
+    let storageValue = sessionStorage.getItem(key)
+    return storageValue !== null ? JSON.parse(storageValue) : initialState
+  })
 
   useEffect(() => {
-    if (value === null) {
-      setValue(
-        JSON.parse(sessionStorage.getItem(key) as string) ?? initialState
-      )
-    } else {
-      sessionStorage.setValue(key, JSON.stringify(value))
-    }
+    sessionStorage.setItem(key, JSON.stringify(value))
   }, [value])
 
-  return {
-    value,
-    setValue,
-  }
+  return [value, setValue]
 }
 
 export default useSessionStorage

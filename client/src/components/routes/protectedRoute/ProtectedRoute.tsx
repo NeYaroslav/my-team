@@ -1,9 +1,10 @@
 import { Outlet, Navigate } from 'react-router-dom'
-import { useAppSelctor } from '../../../redux/hooks'
+import { useAppSelector } from '../../../redux/hooks'
+import { tokenSelector } from '../../../redux/slices/authSlice'
 
 const ProtectedRoute = () => {
-  const selector = useAppSelctor((data) => data.auth)
-  
+  const selector = useAppSelector(tokenSelector)
+
   if (selector) return <Outlet />
   return <Navigate to={'/'} />
 }

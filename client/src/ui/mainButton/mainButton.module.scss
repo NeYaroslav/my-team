@@ -59,8 +59,8 @@
   transform: translate(-50%, -50%);
   width: var(--space-3);
   height: var(--space-3);
-  border: 2px solid var(--txt-color-1-primary);
-  border-top: 2px solid var(--txt-color-2-secondary);
+  border: calc(var(--space-1) / 2) solid var(--txt-color-1-primary);
+  border-top: calc(var(--space-1) / 2) solid var(--txt-color-2-secondary);
   border-radius: var(--radius-3);
   animation: 1s linear infinite normal spin;
 }

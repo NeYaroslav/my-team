@@ -13,11 +13,11 @@ const refresh = async (req: Request, res: ResponseWithError) => {
       process.env.REFRESH_SECRET as Secret
     ) as { id: number }
     if (typeof id !== 'number') throw new Error('invalid token')
-    await findUserByToken(refreshToken)
+    const { username } = await findUserByToken(refreshToken)
     const accessToken = jwt.sign({ id }, process.env.ACCESS_SECRET as Secret, {
       expiresIn: `${process.env.ACCESS_EXPIRES_IN}s`,
     })
-    res.json({ token: accessToken })
+    res.json({ token: accessToken, username })
   } catch (error) {
     res.clearCookie('jwt')
     return res.status(400).json({ message: 'something went wrong', error })

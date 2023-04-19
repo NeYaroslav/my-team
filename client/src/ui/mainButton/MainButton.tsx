@@ -1,9 +1,8 @@
-import React, { memo, useLayoutEffect, useRef } from 'react'
+import { memo, useLayoutEffect, useRef } from 'react'
 import classes from './mainButton.module.scss'
 
-type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   invert?: boolean
-  preloader?: React.FC
   withSpinner?: boolean
 }
 
@@ -17,19 +16,23 @@ const MainButton: React.FC<Props> = ({
   const buttonRef = useRef<HTMLButtonElement>(null)
 
   useLayoutEffect(() => {
-    if(buttonRef.current) {
+    if (buttonRef.current) {
       buttonRef.current.style.minWidth = `${buttonRef.current?.clientWidth}px`
       buttonRef.current.style.minHeight = `${buttonRef.current?.clientHeight}px`
     }
   }, [])
-  
+
   const fullClassName = `${classes['main-button']} ${
     classes[`main-button_${invert ? 'invert' : 'regular'}`]
   } ${className ?? ''}`
 
   return (
     <button ref={buttonRef} className={fullClassName} {...rest}>
-      {withSpinner? <span className={classes['main-button__spinner']}></span> :children}
+      {withSpinner ? (
+        <span className={classes['main-button__spinner']}></span>
+      ) : (
+        children
+      )}
     </button>
   )
 }

@@ -33,6 +33,9 @@ const findUserByToken = async (refreshToken: string) => {
     where: {
       refreshToken: refreshToken,
     },
+    select: {
+      username: true
+    }
   })
 }
 

@@ -39,7 +39,7 @@ const withSignUpForm = <T extends WithProps>(WrappedComponent: React.FC<T>) => {
 
     const onSubmit = handleSubmit(async (values) => {
       const data = await signUp(values).unwrap()
-      dispatch(setToken(data.token))
+      dispatch(setToken(data))
       navigate('/home', {
         replace: true,
       })

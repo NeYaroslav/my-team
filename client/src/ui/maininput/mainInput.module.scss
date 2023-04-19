@@ -16,7 +16,7 @@
     cursor: text;
     border-radius: var(--radius-1);
     background: var(--bg-color-1-secondary);
-    border: 1px solid transparent;
+    border: calc(var(--space-1) / 2) solid transparent;
     transition: border 0.2s ease;
     z-index: -1;
   }
@@ -39,7 +39,7 @@
   }
 
   input:focus ~ label {
-    border: 1px solid var(--bg-color-2-secondary);
+    border: calc(var(--space-1) / 2) solid var(--bg-color-2-secondary);
   }
 
   & > :not(input, label) {
@@ -48,7 +48,7 @@
   &.main-input_error {
     animation: showError 0.3s linear 1 alternate;
     label {
-      border: 1px solid var(--bg-color-3-primary);
+      border-color: var(--bg-color-3-primary);
     }
   }
 }

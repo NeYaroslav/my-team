@@ -4,10 +4,10 @@ import {
   BaseQueryFn,
   FetchArgs,
   FetchBaseQueryMeta,
-  FetchBaseQueryError,
 } from '@reduxjs/toolkit/query/react'
 import { clearToken, setToken } from '../slices/authSlice'
 import { RootState } from '../store'
+import { IAuthResponse } from '../../types'
 
 const baseQuery = fetchBaseQuery({
   baseUrl: 'http://localhost:2007',
@@ -16,7 +16,7 @@ const baseQuery = fetchBaseQuery({
   },
   credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
-    const token = (getState() as RootState).auth
+    const token = (getState() as RootState).auth.token
     if (token !== null) {
       headers.set('authorization', `Bearer ${token}`)
     }
@@ -35,8 +35,8 @@ const baseQueryWithRefresh: BaseQueryFn<
 
   if (result.error?.status === 403) {
     const refreshResponse = await baseQuery('/auth/refresh', api, extraOptions)
-    if (refreshResponse.data !== null) {
-      api.dispatch(setToken(refreshResponse.data as string))
+    if (refreshResponse.data !== null && refreshResponse.data !== undefined) {
+      api.dispatch(setToken(refreshResponse.data as IAuthResponse))
       result = await baseQuery(args, api, extraOptions)
     } else {
       console.log('log out')

@@ -14,6 +14,10 @@ app.use(express.json())
 app.use(cors({ origin: 'http://localhost:5173', credentials: true }))
 // routes
 // auth
+app.use((req, res, next) => {
+  console.log(req.body);
+  next()
+})
 app.use('/auth', authRouter)
 // protectedRoutes
 app.use(verifyAccess)

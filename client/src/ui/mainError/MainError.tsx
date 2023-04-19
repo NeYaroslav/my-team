@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { CgInfo } from 'react-icons/cg'
 import classes from './mainError.module.scss'
 

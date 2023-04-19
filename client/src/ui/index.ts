@@ -1,5 +1,4 @@
 export { default as Preloader } from './preloader/Preloader'
-export { default as MainCheckbox } from './mainCheckbox/MainCheckbox'
 export { default as MainError } from './mainError/MainError'
 export { default as LocalLink } from './localLink/LocalLink'
 export { default as MainInput } from './mainInput/MainInput'

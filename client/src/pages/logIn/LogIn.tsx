@@ -1,4 +1,3 @@
-import React from 'react'
 import { LogInForm } from '../../components/logIn'
 import { LocalLink } from '../../ui'
 import classes from './logIn.module.scss'

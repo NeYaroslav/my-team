@@ -1,7 +1,7 @@
 import { memo, forwardRef } from 'react'
 import classes from './mainInput.module.scss'
 
-type Props = React.InputHTMLAttributes<HTMLInputElement> & {
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   id: string
   icon?: React.ReactNode
   withError?: boolean
